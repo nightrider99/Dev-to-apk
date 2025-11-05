@@ -262,26 +262,6 @@ class GameStateManager {
     }
 
     // Render game over state
-    renderPlayingState() {
-        // Render pipes
-        this.pipeManager.render(this.ctx);
-
-        // Render bird (falling)
-        this.bird.render(this.ctx);
-
-        // Render score
-        this.scoreManager.renderScore(this.ctx);
-
-        // Render score animations
-        this.scoreManager.updateAnimations(this.ctx);
-
-        // Add explosion effect at collision point
-        if (this.collisionPoint) {
-            this.renderExplosion(this.collisionPoint.x, this.collisionPoint.y);
-        }
-    }
-
-    // Render game over state
     renderGameOverState() {
         // Render pipes
         this.pipeManager.render(this.ctx);
