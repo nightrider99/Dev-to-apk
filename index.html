@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="320" height="568"></canvas>
+        <div id="gameOverlay">
+            <div id="startScreen" class="screen">
+                <h1 class="game-title">Flappy Bird</h1>
+                <div class="bird-preview"></div>
+                <p class="instruction">Click to Start</p>
+                <div class="high-score">High Score: <span id="highScoreValue">0</span></div>
+            </div>
+            <div id="gameOverScreen" class="screen hidden">
+                <h2 class="game-over-title">Game Over</h2>
+                <div class="score-display">
+                    <div class="final-score">Score: <span id="finalScore">0</span></div>
+                    <div class="high-score">High Score: <span id="finalHighScore">0</span></div>
+                </div>
+                <p class="instruction">Click to Restart</p>
+            </div>
+        </div>
+        <div id="scoreDisplay" class="hidden">0</div>
+    </div>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="jumpSound" preload="auto">
+        <source src="assets/jump.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="scoreSound" preload="auto">
+        <source src="assets/score.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="hitSound" preload="auto">
+        <source src="assets/hit.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Game scripts -->
+    <script src="js/bird.js"></script>
+    <script src="js/pipe.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/score.js"></script>
+    <script src="js/game-states.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
