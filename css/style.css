@@ -1,0 +1,242 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Game container */
+.game-container {
+    position: relative;
+    width: 320px;
+    height: 568px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Canvas styling */
+#gameCanvas {
+    display: block;
+    background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 75%, #8B7355 75%, #654321 100%);
+    cursor: pointer;
+}
+
+/* Game overlay */
+#gameOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+/* Screen styling */
+.screen {
+    text-align: center;
+    color: white;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* Game title */
+.game-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.game-over-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #FF6B6B;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Bird preview */
+.bird-preview {
+    width: 30px;
+    height: 30px;
+    background: #FFD700;
+    border-radius: 50%;
+    margin: 20px auto;
+    position: relative;
+    animation: float 2s ease-in-out infinite;
+}
+
+.bird-preview::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    top: 8px;
+    right: 8px;
+    border: 1px solid #333;
+}
+
+.bird-preview::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    background: #FFA500;
+    top: 14px;
+    right: 12px;
+    border-radius: 2px;
+}
+
+/* Instructions */
+.instruction {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #FFE4B5;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Score displays */
+.score-display {
+    margin: 15px 0;
+}
+
+.final-score, .high-score {
+    font-size: 20px;
+    margin: 8px 0;
+    color: #FFE4B5;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#scoreDisplay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Mobile responsive design */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 320/568;
+    }
+
+    #gameCanvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .game-title {
+        font-size: 24px;
+    }
+
+    .game-over-title {
+        font-size: 20px;
+    }
+
+    .instruction {
+        font-size: 16px;
+    }
+}
+
+/* Touch-friendly button areas */
+.screen {
+    padding: 20px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Visual feedback for interactions */
+.game-container:active {
+    transform: scale(0.98);
+}
+
+#gameCanvas:active {
+    filter: brightness(1.1);
+}
+
+/* Loading state */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    font-size: 20px;
+}
+
+/* Fallback for older browsers */
+@supports not (backdrop-filter: blur(2px)) {
+    #gameOverlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
