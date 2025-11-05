@@ -87,12 +87,19 @@ const mockContext = {
 // Load game classes
 const fs = require('fs');
 
-// Evaluate the JavaScript files
-eval(fs.readFileSync('js/bird.js', 'utf8'));
-eval(fs.readFileSync('js/pipe.js', 'utf8'));
-eval(fs.readFileSync('js/input.js', 'utf8'));
-eval(fs.readFileSync('js/score.js', 'utf8'));
-eval(fs.readFileSync('js/game-states.js', 'utf8'));
+// Evaluate the JavaScript files and capture class definitions
+const birdCode = fs.readFileSync('js/bird.js', 'utf8');
+const pipeCode = fs.readFileSync('js/pipe.js', 'utf8');
+const inputCode = fs.readFileSync('js/input.js', 'utf8');
+const scoreCode = fs.readFileSync('js/score.js', 'utf8');
+const gameStateCode = fs.readFileSync('js/game-states.js', 'utf8');
+
+// Execute in global scope to make classes available
+global.eval(birdCode);
+global.eval(pipeCode);
+global.eval(inputCode);
+global.eval(scoreCode);
+global.eval(gameStateCode);
 
 // Test Bird class
 console.log('Testing Bird class...');
